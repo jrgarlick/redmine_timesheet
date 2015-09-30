@@ -1,0 +1,59 @@
+<% html_title "Allison Timesheets" %>
+
+<% content_for :sidebar do %>
+  <h3>Recent Timesheets</h3>
+
+  <ul>
+  <% @recent_timesheets.each do |ts| %>
+    <li><%= link_to ts.spent_on, { :action => 'index', :date => ts.spent_on, :project_id => params[:project_id] }, :class => ("selected" if @date.eql? ts.spent_on.to_s) %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div id="timesheet-index">
+<div class="autoscroll">
+  <h2>ATI Timesheet</h2>
+  <table class="list time-entries">
+    <thead>
+      <tr><th>Project</th><th>Issue</th><th>Activity</th><th>Bugzilla #</th><th>Hours</th><th>Comment</th></tr>
+    </thead>
+    <tbody>
+    <% @entries.each do |entry| %>
+      <tr>
+        <td><%= link_to_project(entry.issue.project) %>
+        <td class="subject"><%= link_to_issue(entry.issue, :subject => true, :tracker => false) %></td>
+        <td><%= entry.activity.name %></td>
+        <td>
+          <a href="https://bugzilla.ati.dev.allegient.net/show_bug.cgi?id=<%= entry.issue.custom_value_for(6).value %>" target="bugzilla">
+            <%= entry.issue.custom_value_for(6).value %>
+          </a>
+        </td>
+        <td><a href="/time_entries/<%= entry.id %>/edit"><%= entry.hours %></a></td>
+        <td class="subject"><%= entry.comments %></td>
+      </tr>
+    <% end %>
+    </tbody>
+    <tfoot>
+      </th><th></th><th></th><th></th><th></th><th><%= @total_hours %> hours</th><th></th></tr>
+    </tfoot>
+  </table>
+
+  <div align="center">
+    <br/>
+    <form>
+      <textarea name="activity" class="activity"><%= @activity %></textarea>
+    </form>
+  </div>
+  
+  <p>
+    <a href="https://system.netsuite.com/app/accounting/transactions/timebill.nl" target="netsuite">
+      Log time on Netsuite
+    </a>
+  </p>
+
+</div>
+</div>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'timesheet', :plugin => 'timesheet' %>
+<% end %>
