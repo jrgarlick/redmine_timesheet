@@ -16,7 +16,7 @@ class TimesheetController < ApplicationController
     @total_hours = 0
     @entries.each do |entry|
       if entry.issue.custom_value_for(6).value then
-        @activity << "(#" + entry.issue.id + ") "+entry.comments+"; "
+        @activity << "(ATI-TKT " + entry.issue.custom_value_for(6).value + ") "+entry.comments+"; "
       else 
         @activity << entry.comments + "; "
       end
