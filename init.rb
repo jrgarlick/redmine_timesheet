@@ -3,9 +3,9 @@ Redmine::Plugin.register :timesheet do
   name 'Timesheet plugin'
   author 'Jim Garlick'
   description 'This is a plugin that shows you your daily work'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  version '0.0.2'
+  url 'https://bitbucket.org/jgarlick/timesheet'
+  author_url 'https://bitbucket.org/jgarlick'
 
   permission :timesheet, { :timesheet => [:index] }, :public => true
 #  project_module :timesheet do
