@@ -15,11 +15,7 @@ class TimesheetController < ApplicationController
     @activity = ""
     @total_hours = 0
     @entries.each do |entry|
-      if entry.issue.custom_value_for(6).value then
-        @activity << "(#" + entry.issue.id + ") "+entry.comments+"; "
-      else 
-        @activity << entry.comments + "; "
-      end
+      @activity << "(##{entry.issue.id}) " + entry.comments + "; "
       @total_hours = @total_hours + entry.hours
     end
 
