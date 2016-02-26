@@ -1,9 +1,7 @@
 class TimesheetController < ApplicationController
   unloadable
 
-
   def index
-#    @project = Project.find(params[:project_id])
 
     @date = Date.today.to_s
     if (params.has_key?(:date))
@@ -19,6 +17,10 @@ class TimesheetController < ApplicationController
       @total_hours = @total_hours + entry.hours
     end
 
-    @recent_timesheets = TimeEntry.select("distinct spent_on").order("spent_on DESC").limit(10)
+    @recent_timesheets = 
+            TimeEntry.select("distinct spent_on")
+                    .where("user_id = ?", User.current.id)
+                    .order("spent_on DESC")
+                    .limit(10)
   end
 end
