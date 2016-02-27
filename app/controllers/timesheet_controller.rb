@@ -13,7 +13,10 @@ class TimesheetController < ApplicationController
     @activity = ""
     @total_hours = 0
     @entries.each do |entry|
-      @activity << "(##{entry.issue.id}) " + entry.comments + "; "
+      if defined?(entry.issue.id) then
+          @activity << "(##{entry.issue.id}) "
+      end
+      @activity << entry.comments + "; "
       @total_hours = @total_hours + entry.hours
     end
 
