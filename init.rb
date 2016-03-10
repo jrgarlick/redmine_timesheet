@@ -9,6 +9,6 @@ Redmine::Plugin.register :timesheet do
 
   permission :timesheet, { :timesheet => [:index] }, :public => true
 
-  menu :top_menu, :timesheet, { :controller => 'timesheet', :action => 'index' }, :caption => 'Timesheet'
+  menu :top_menu, :timesheet, { :controller => 'timesheet', :action => 'index' }, :caption => 'My Timesheet'
 
 end
