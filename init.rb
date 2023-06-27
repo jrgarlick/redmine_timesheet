@@ -1,14 +1,14 @@
-Redmine::Plugin.register :timesheet do
+Redmine::Plugin.register :redmine_timesheet do
 
   name 'Timesheet plugin'
   author 'Jim Garlick'
-  description 'This is a plugin that shows you your daily work'
+  description 'This is a plugin that shows you a summary of the activites for your daily work.'
   version '0.0.2'
-  url 'https://bitbucket.org/jgarlick/timesheet'
-  author_url 'https://bitbucket.org/jgarlick'
+  url 'https://github.com/jrgarlick/redmine_timesheet'
+  author_url 'https://github.com/jrgarlick'
 
-  permission :timesheet, { :timesheet => [:index] }, :public => true
+  permission :redmine_timesheet, { :timesheet => [:index] }, :public => true
 
-  menu :top_menu, :timesheet, { :controller => 'timesheet', :action => 'index' }, :caption => 'My Timesheet'
+  menu :top_menu, :redmine_timesheet, { :controller => 'timesheet', :action => 'index' }, :caption => 'My Timesheet'
 
 end

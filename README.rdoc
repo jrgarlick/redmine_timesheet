@@ -1,5 +1,0 @@
-= timesheet
-
-Description goes here and here too
-
-and here

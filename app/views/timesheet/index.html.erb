@@ -14,44 +14,38 @@
 <% end %>
 
 <div id="timesheet-index">
-<div class="autoscroll">
-  <h2>My Timesheet</h2>
-  <table class="list time-entries">
-    <thead>
-      <tr><th>Project</th><th>Issue</th><th>Activity</th><th>Hours</th><th>Comment</th></tr>
-    </thead>
-    <tbody>
-    <% @entries.each do |entry| %>
-      <tr>
-        <td><%= link_to_project(entry.project) %>
-        <td class="subject"><%= if defined?(entry.issue.id) then link_to_issue(entry.issue, :subject => true, :tracker => false) end %></td>
-        <td><%= entry.activity.name %></td>
-        <td><a href="/time_entries/<%= entry.id %>/edit"><%= entry.hours %></a></td>
-        <td class="subject"><%= entry.comments %></td>
-      </tr>
-    <% end %>
-    </tbody>
-    <tfoot>
-      </th><th></th><th></th><th></th><th><%= @total_hours %> hours</th><th></th></tr>
-    </tfoot>
-  </table>
+  <div class="autoscroll">
+    <h2>My Timesheet</h2>
+    <table class="list time-entries">
+      <thead>
+        <tr><th>Project</th><th>Issue</th><th>Activity</th><th>Hours</th><th>Comment</th></tr>
+      </thead>
+      <tbody>
+      <% @entries.each do |entry| %>
+        <tr>
+          <td><%= link_to_project(entry.project) %>
+          <td class="subject"><%= if defined?(entry.issue.id) then link_to_issue(entry.issue, :subject => true, :tracker => false) end %></td>
+          <td><%= entry.activity.name %></td>
+          <td><a href="/time_entries/<%= entry.id %>/edit"><%= entry.hours %></a></td>
+          <td class="subject"><%= entry.comments %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      <tfoot>
+        </th><th></th><th></th><th></th><th><%= @total_hours %> hours</th><th></th></tr>
+      </tfoot>
+    </table>
 
-  <div align="center">
-    <br/>
-    <form>
-      <textarea name="activity" class="activity"><%= @activity %></textarea>
-    </form>
+    <div align="center">
+      <br/>
+      <form>
+        <textarea name="activity" class="activity"><%= @activity %></textarea>
+      </form>
+    </div>
+
   </div>
-  
-  <p>
-    <a href="https://system.netsuite.com/app/accounting/transactions/timebill.nl" target="netsuite">
-      Log time on Netsuite
-    </a>
-  </p>
-
-</div>
 </div>
 
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'timesheet', :plugin => 'timesheet' %>
+    <%= stylesheet_link_tag 'redmine_timesheet', :plugin => 'redmine_timesheet' %>
 <% end %>
